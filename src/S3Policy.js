@@ -30,6 +30,7 @@ export class S3Policy {
     assert(options.date, "Must provide `date` option with the current date");
     assert(options.accessKey, "Must provide `accessKey` option with your AWSAccessKeyId");
     assert(options.secretKey, "Must provide `secretKey` option with your AWSSecretKey");
+    assert(options.sessionToken, "Must provide `sessionToken` option");
 
     const date = options.date;
     const timeDelta = options.timeDelta || 0;
@@ -40,7 +41,7 @@ export class S3Policy {
       ...options,
       acl: options.acl || AWS_ACL,
       algorithm: AWS_ALGORITHM,
-      sessionToken: options.sessionToken
+      sessionToken: options.sessionToken,
       amzDate: dateToString(date, 'amz-iso8601'),
       yyyymmddDate: dateToString(date, 'yyyymmdd'),
       expirationDate: dateToString(expirationDate, 'iso8601'),
